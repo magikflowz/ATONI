@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Vue | Home Page</title>
+    <link rel="stylesheet", href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" src="/images/favicon.png">
+    
+</head>
+<body class="content">
+
+    <div class="wrapper ">
+        <div id="form-content">
+          <!-- Tabs Titles -->
+          <h2 class="active"><a href="{{ url_for('login')}}"> login </a></h2>
+          <h2 class="inactive underlineHover"><a href="{{ url_for('register')}}">Sign Up </a></h2>
+      
+          <!-- Logo -->
+          <div class="logo">
+            <img src="/static/images/Logo.png" id="logo" alt="User Logo" />
+          </div>
+   
+    <br>
+    <h1> Vue Call </h1>
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        {{ form.username }}
+        {{ form.password }}
+        {{ form.submit }}
+
+    </form>
+    <a href="{{ url_for('register')}}">Register if you don't have an account </a>
+</body>
+</html>
