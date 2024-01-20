@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,8 +12,8 @@
         <div class="wrapper ">
             <div id="form-content">
               <!-- Tabs Titles -->
-              <h2 class="active"><a href="{{ url_for('index')}}"> login </a></h2>
-              <h2 class="inactive underlineHover"><a href="{{ url_for('register')}}">Sign Up </a></h2>
+              <h2 class="inactive underlineHover"><a href="{{ url_for('login')}}"> login </a></h2>
+              <h2 class="active"><a href="{{ url_for('register')}}">Sign Up </a></h2>
           
               <!-- Logo -->
               <div class="logo">
@@ -24,7 +23,7 @@
         {{ form.hidden_tag() }}
         {{ form.username }}
         {{ form.password }}
-        {{ form.submit }}    
+        {{ form.submit }}
     </form>
     
     <a href="{{ url_for('login')}}">Already have an account? login</a>

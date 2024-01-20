@@ -1,12 +1,13 @@
-from flask import Flask, render_template, url_for, request, redirect
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user 
-from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import InputRequired, Length, ValidationError
 from datetime import datetime
-from flask_bcrypt import Bcrypt
 
+from flask import Flask, redirect, render_template, request, url_for
+from flask_bcrypt import Bcrypt
+from flask_login import (LoginManager, UserMixin, current_user, login_required,
+                         login_user, logout_user)
+from flask_sqlalchemy import SQLAlchemy
+from flask_wtf import FlaskForm
+from wtforms import PasswordField, StringField, SubmitField
+from wtforms.validators import InputRequired, Length, ValidationError
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -91,7 +92,6 @@ def dashboard():
     return render_template('dashboard.html')
 
 @app.route('/task_master/', methods=['POST', 'GET'])
-@login_required
 def taskMaster():
     if request.method == 'POST':
         task_content = request.form['content']
@@ -105,7 +105,7 @@ def taskMaster():
             return 'There was an issue adding your task. Please try again'
     else:
         tasks = Todo.query.order_by(Todo.date_created).all()
-        return render_template('login.html', tasks=tasks)
+        return render_template('tasks.html', tasks=tasks)
 
 @app.route('/delete/<int:id>')
 @login_required
