@@ -82,14 +82,14 @@ def register():
         new_user = User(username=form.username.data, password=hash_password)
         db.session.add(new_user)
         db.session.commit()
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
     
     return render_template('register.html', form=form)
 
 @app.route('/dashboard/', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    return render_template('home.html')
 
 @app.route('/task_master/', methods=['POST', 'GET'])
 def taskMaster():
@@ -138,3 +138,4 @@ def update(id):
 
 if __name__ == "__main__":
     app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
